@@ -47,11 +47,9 @@ class authPage {
 
     async logout(){
         await this.page.getByText('Logout').click()
+        await this.page.waitForLoadState('networkidle')
     }
 
-    async clickCancelBtn() {
-        await this.page.getByText('Cancel').click()
-    }
 
 }
 

@@ -1,9 +1,11 @@
+
 const {authPage} = require('../pageObject/authPage')
 let authP
 
 export const login = async (page, email, pass) => {
 
     authP = new authPage(page)
+
 
     await page.goto(process.env.URL)
     await authP.acceptCoockies()

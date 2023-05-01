@@ -3,6 +3,7 @@ const {login, getEmail, logout} = require("../utils/auth");
 const {authPage} = require("../pageObject/authPage")
 const {faker} = require('@faker-js/faker')
 let authP
+const dashboardLink = '/dashboard'
 
 test.describe('authorization tests', async () => {
 
@@ -10,8 +11,8 @@ test.describe('authorization tests', async () => {
 
     authP = new authPage(page)
     await login(page, process.env.USERNAME, process.env.PASSWORD)
-    await authP.waitForPageUrlLoaded('/dashboard')
-    await expect(page).toHaveURL(`${process.env.URL}/dashboard`)
+    await authP.waitForPageUrlLoaded(`${dashboardLink}`)
+    await expect(page).toHaveURL(`${process.env.URL}${dashboardLink}`)
 
     await logout(page, process.env.USERNAME)
     await expect(page).toHaveURL(`${process.env.URL}/login`)
@@ -22,8 +23,8 @@ test.describe('authorization tests', async () => {
 
     authP = new authPage(page)
     await login(page, getEmail.emailUpperCase(process.env.USERNAME), process.env.PASSWORD)
-    await authP.waitForPageUrlLoaded('/dashboard')
-    await expect(page).toHaveURL(`${process.env.URL}/dashboard`)
+    await authP.waitForPageUrlLoaded(`${dashboardLink}`)
+    await expect(page).toHaveURL(`${process.env.URL}${dashboardLink}`)
 
   })
 
